@@ -1915,7 +1915,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return errors;
     }(function () {
-      if (errors.length === 0) {
+      if (Object.keys(errors).length) {
         console.log('ddd');
       } else {
         console.log('ddd');
@@ -1976,11 +1976,11 @@ __webpack_require__.r(__webpack_exports__);
         stars: this.value,
         isPublic: this.isPublic
       }).then(function (response) {
-        console.log(response.data);
         _this.avis = '';
         _this.title = '';
         _this.date = '';
         _this.isPublic = false;
+        alert('Data Stored');
       })["catch"](function (error) {
         if (error.response.status == 422) {
           _this.errors = error.response.data.errors;
@@ -38127,7 +38127,7 @@ var render = function() {
             attrs: { id: "avis", rows: "3" },
             domProps: { value: _vm.avis },
             on: {
-              blur: _vm.avisValidate,
+              keyup: _vm.avisValidate,
               input: function($event) {
                 if ($event.target.composing) {
                   return

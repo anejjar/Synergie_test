@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group">
                     <label for="avis">Donnez votre avis</label>
-                    <textarea class="form-control" v-on:blur="avisValidate" id="avis" rows="3" v-model="avis"></textarea>
+                    <textarea class="form-control" v-on:keyup="avisValidate" id="avis" rows="3" v-model="avis"></textarea>
                     <small  v-if="errors.avis"  class="form-text  text-danger">{{errors.avis[0]}}</small>
                 </div>
                 <div class="form-group">
@@ -66,7 +66,7 @@
         },
         watch:{
             errors(){
-                if(errors.length === 0){
+                if(Object.keys(errors).length){
                     console.log('ddd')
                 }else{
                      console.log('ddd')
@@ -129,11 +129,12 @@
                         isPublic: this.isPublic,
                     })
                     .then(response => {
-                        console.log(response.data);
+                        
                          this.avis=''
                          this.title=''
                          this.date=''
                          this.isPublic=false
+                         alert('Data Stored')
                     })
                     .catch(error => {
                         if(error.response.status == 422){
